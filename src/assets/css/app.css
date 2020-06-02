@@ -1,0 +1,361 @@
+/*-- Chart --*/
+.c3 svg {
+  font: 10px sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.c3 path,
+.c3 line {
+  fill: none;
+  stroke: rgba(0, 40, 100, 0.12);
+}
+
+.c3 text {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: px2rem(12px);
+}
+
+.c3-legend-item-tile,
+.c3-xgrid-focus,
+.c3-ygrid,
+.c3-event-rect,
+.c3-bars path {
+  shape-rendering: crispEdges;
+}
+
+.c3-chart-arc path {
+  stroke: #fff;
+}
+
+.c3-chart-arc text {
+  fill: #fff;
+  font-size: 13px;
+}
+
+/*-- Axis --*/
+/*-- Grid --*/
+.c3-grid line {
+  stroke: #f0f0f0;
+}
+
+.c3-grid text {
+  fill: #aaa;
+}
+
+.c3-xgrid,
+.c3-ygrid {
+  stroke: #e6e6e6;
+  stroke-dasharray: 2 4;
+}
+
+/*-- Text on Chart --*/
+.c3-text {
+  font-size: 12px;
+}
+
+.c3-text.c3-empty {
+  fill: #808080;
+  font-size: 2em;
+}
+
+/*-- Line --*/
+.c3-line {
+  stroke-width: 2px;
+}
+
+/*-- Point --*/
+.c3-circle._expanded_ {
+  stroke-width: 2px;
+  stroke: white;
+}
+
+.c3-selected-circle {
+  fill: white;
+  stroke-width: 1.5px;
+}
+
+/*-- Bar --*/
+.c3-bar {
+  stroke-width: 0;
+}
+
+.c3-bar._expanded_ {
+  fill-opacity: 1;
+  fill-opacity: 0.75;
+}
+
+/*-- Focus --*/
+.c3-target.c3-focused {
+  opacity: 1;
+}
+
+.c3-target.c3-focused path.c3-line,
+.c3-target.c3-focused path.c3-step {
+  stroke-width: 2px;
+}
+
+.c3-target.c3-defocused {
+  opacity: 0.3 !important;
+}
+
+/*-- Region --*/
+.c3-region {
+  fill: steelblue;
+  fill-opacity: 0.1;
+}
+
+/*-- Brush --*/
+.c3-brush .extent {
+  fill-opacity: 0.1;
+}
+
+/*-- Select - Drag --*/
+/*-- Legend --*/
+.c3-legend-item text {
+  fill: #545454;
+  font-size: 14px;
+}
+
+.c3-legend-item-hidden {
+  opacity: 0.15;
+}
+
+.c3-legend-background {
+  fill: transparent;
+  stroke: lightgray;
+  stroke-width: 0;
+}
+
+/*-- Title --*/
+.c3-title {
+  font: 14px sans-serif;
+}
+
+/*-- Tooltip --*/
+.c3-tooltip-container {
+  z-index: 10;
+}
+
+.c3-tooltip {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 3px;
+  background: #212529 !important;
+  white-space: nowrap;
+}
+
+.c3-tooltip th {
+  padding: 6px 6px;
+  text-align: left;
+}
+
+.c3-tooltip td {
+  padding: 4px 6px;
+  font-weight: 400;
+}
+
+.c3-tooltip td > span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  vertical-align: baseline;
+}
+
+.c3-tooltip td.value {
+  text-align: right;
+}
+
+/*-- Area --*/
+.c3-area {
+  stroke-width: 0;
+  opacity: 0.1;
+}
+
+.c3-target-filled .c3-area {
+  opacity: 1 !important;
+}
+
+/*-- Arc --*/
+.c3-chart-arcs-title {
+  dominant-baseline: middle;
+  font-size: 1.3em;
+}
+
+.c3-chart-arcs .c3-chart-arcs-background {
+  fill: #e0e0e0;
+  stroke: none;
+}
+
+.c3-chart-arcs .c3-chart-arcs-gauge-unit {
+  fill: #000;
+  font-size: 16px;
+}
+
+.c3-chart-arcs .c3-chart-arcs-gauge-max {
+  fill: #777;
+}
+
+.c3-chart-arcs .c3-chart-arcs-gauge-min {
+  fill: #777;
+}
+
+.c3-chart-arc .c3-gauge-value {
+  fill: #000;
+  /*  font-size: 28px !important;*/
+}
+
+.c3-chart-arc.c3-target g path {
+  opacity: 1;
+}
+
+.c3-chart-arc.c3-target.c3-focused g path {
+  opacity: 1;
+}
+
+.c3-axis {
+  fill: #9aa0ac;
+}
+
+.h-6 {
+  height: 4rem !important;
+}
+.header-brand-img {
+  height: 3rem;
+}
+.leading-none {
+  line-height: 1 !important;
+  padding-top: 0.5rem !important;
+}
+
+.margin-left-auto {
+  margin-left: auto !important;
+}
+.ant-table {
+  font-size: smaller !important;
+}
+
+@media (min-width: 768px) {
+  .page-content {
+    margin: 1.5rem 0;
+    min-height: 65vh;
+  }
+}
+.steps-content {
+  margin-top: 16px;
+  border: 1px dashed #e9e9e9;
+  border-radius: 2px;
+  background-color: #fafafa;
+  min-height: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.steps-action {
+  margin-top: 24px;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff;
+  text-decoration: none;
+  background-color: #1890ff;
+}
+
+.nav-tabs .nav-link.active {
+  border-color: #1890ff;
+  color: #1890ff;
+  background: transparent;
+}
+
+.nav-tabs:hover .nav-link.active:focus {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+  color: white;
+}
+
+a {
+  color: #1890ff;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  color: #fff;
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+.events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.events .ant-badge-status {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
+  font-size: 12px;
+}
+.notes-month {
+  text-align: center;
+  font-size: 20px;
+}
+.notes-month section {
+  font-size: 20px;
+}
+
+.time-list-alt {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .time-list-alt {
+    display: block;
+  }
+  .time-list {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .ant-list-item-action {
+    margin-left: 12px;
+  }
+  .ant-list-item {
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+}
+
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 300px;
+  min-height: 300px;
+  line-height: 300px;
+  background: #364d79;
+  overflow: hidden;
+}
+.slick-list {
+  height: 300px;
+}
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
