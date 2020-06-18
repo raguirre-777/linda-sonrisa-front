@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import ReactLoading from "react-loading";
-import Layout from "../../containers/layout";
+import Layout from "../containers/layout";
 import { Alert, Button } from "antd";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
@@ -38,11 +38,6 @@ class HomePageWeb extends React.Component<Props> {
 
     return (
       <>
-        <Alert
-          message="Bienvenido al nuevo sitio web. Ahora prodrás reservar tus horas médicas online"
-          banner
-          type="success"
-        />
         <Layout isHome={true}>
           <div
             style={{
@@ -57,13 +52,13 @@ class HomePageWeb extends React.Component<Props> {
               interval={6000}
             >
               <div>
-                <img src={require("../../assets/banner/01.png")} alt="" />
+                <img src={require("../assets/banner/01.png")} alt="" />
               </div>
               <div>
-                <img src={require("../../assets/banner/02.png")} alt="" />
+                <img src={require("../assets/banner/02.png")} alt="" />
               </div>
               <div>
-                <img src={require("../../assets/banner/03.png")} alt="" />
+                <img src={require("../assets/banner/03.png")} alt="" />
               </div>
             </Carousel>
           </div>
@@ -112,7 +107,7 @@ class HomePageWeb extends React.Component<Props> {
                         <Button
                           type="primary"
                           onClick={() => {
-                            this.props.history.push("/nosotros");
+                            this.props.history.push("/convenios");
                           }}
                         >
                           Encontrar

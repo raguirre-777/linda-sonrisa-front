@@ -2,10 +2,10 @@ import * as React from "react";
 import { Formik } from "formik";
 import { StandaloneFormPage, FormTextInput } from "tabler-react";
 import logo from "../../../assets/logo.png";
-import { Auth } from "../../../api/auth";
+import { Auth } from "../../api/auth";
 import { withRouter } from "react-router-dom";
-import { ValidateRut } from "../../../api/validate";
-import FormCard from "../../../components/form-card";
+import { ValidateRut } from "../../api/validate";
+import FormCard from "../../components/form-card";
 import swal from "sweetalert";
 import { Button } from "antd";
 

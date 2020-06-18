@@ -2,7 +2,9 @@ import React from "react";
 
 import { Container, Grid, Card } from "tabler-react";
 
-import Layout from "../../containers/layout";
+
+import Layout from "../containers/layout";
+
 import { Alert, Collapse } from "antd";
 const { Panel } = Collapse;
 
@@ -10,11 +12,6 @@ export default class AboutPageWeb extends React.Component {
   render() {
     return (
       <>
-        <Alert
-          message="Bienvenido al nuevo sitio web. Ahora prodrás reservar tus horas médicas online"
-          banner
-          type="success"
-        />
         <Layout isHome={true}>
           <div className="my-3 my-md-5">
             <Container>
@@ -27,7 +24,7 @@ export default class AboutPageWeb extends React.Component {
                     <Card.Body>
                       <div className="d-flex justify-content-center mb-5">
                         <img
-                          src={require("../../assets/logo.png")}
+                          src={require("../assets/logo.png")}
                           height={100}
                           alt=""
                         />
@@ -38,36 +35,40 @@ export default class AboutPageWeb extends React.Component {
                         tecnología, a todas las personas que lo requieren.
                       </p>
                       <p>
+                        También nos ocupamos de la salud bucodental de cualquier miembro de su familia. Desde las revisiones
+                        iniciales de los más pequeños, hasta las prótesis totales de los más mayores. Trabajamos para desarrollar
+                        una Odontología integrada, valiéndonos de una amplia gama de técnicas, resolvemos cualquier tratamiento odontológico
+                        que pueda necesitar nuestro paciente.
+                      </p>
+                      <p>
                         Por lo anterior, y pensando en las personas de menos recursos, han podido adjudicarse un subsidio
                         extranjero, que consiste en que por cada persona atendida obtienen un porcentaje importante del
                         arancel (El porcentaje entregado por el subsidio es según una escala entregada y actualizada por
                         año). Todo esto supervisado por el Ministerio de Salud.
                       </p>
-                      <p>
-                        Luis y Marco, están muy entusiasmado por recibir este subsidio, que les darán una linda sonrisa a
-                        aquellas personas que no tienen la posibilidad económica para adquirir el servicio de forma
-                        particular.
-                      </p>
-                      <p>
-                        ¿QUÉ SE REQUIERE?
-                        Un sistema de software cuya interfaz sea WEB, que permita gestionar los servicios con los distintos
-                        clientestanto local en el establecimiento, como, vía web (sólo para clientes registrados para reserva
-                        de atención)
-                      </p>
+
                       <Collapse defaultActiveKey={["1"]} accordion>
                         <Panel header="Misión" key="1">
                           <p>
-                            Misión
+                            Odontólogos con una sólida base de conocimientos científicos, técnicos, humanísticos,
+                            metodológicos y éticos en las materias que competen a la odontología y al estado de salud integral de
+                            las personas, mediante una experiencia educacional integradora y de excelencia para un mundo globalizado,
+                            apoyada en el cultivo crítico del saber y en la generación sistemática de nuevo conocimiento, entregándoles
+                            el entrenamiento suficiente en las habilidades y destrezas que necesita el profesional para desarrollar
+                            su práctica, en el contexto del ser humano como un todo.
                           </p>
                         </Panel>
                         <Panel header="Visión" key="2">
                           <p>
-                            Visión
+                            Nuestra visión es ser líderes Cirujano-Dentistas integrales y comprometidos con las necesidades
+                            de salud bucal de la población, siendo  reconocida  entre las mejores instituciones de odontología del  país.
                           </p>
                         </Panel>
                         <Panel header="Propuesta de valor" key="3">
                           <p>
-                            Propuesta de valor
+                            Nuestra filosofía se basa en la calidez humana. Desde la primera visita, nuestro trato es siempre familiar y
+                            personalizado, aconsejando a nuestros pacientes sobre el mejor tratamiento a seguir utilizando siempre las últimas
+                            innovaciones técnicas.
                           </p>
                         </Panel>
                       </Collapse>

@@ -6,18 +6,20 @@ import {
   FormTextInput,
   Form,
 } from "tabler-react";
-import logo from "../../../assets/logo.png";
-import { ValidateRut } from "../../../api/validate";
+import logo from "../../assets/logo.png";
+import { ValidateRut } from "../../api/validate";
 import * as Validator from "class-validator";
-import { UserDto } from "../../../api/dto/user.dto";
+import { UserDto } from "../../api/dto/user.dto";
 import moment from "moment";
 import swal from "sweetalert";
-import { Auth } from "../../../api/auth";
+import { Auth } from "../../api/auth";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setSession } from "../../../redux/action";
+import { setSession } from "../../redux/action";
 import { Button } from "antd";
+
+
 
 type Props = {
   setSession: any;
@@ -152,117 +154,117 @@ class RegisterPage extends React.Component<Props> {
           handleSubmit,
           isSubmitting,
         }) => (
-          <StandaloneFormPage imageURL={logo}>
-            <FormCard
-              buttonText={"Registrar"}
-              title={"Registro de usuario"}
-              onSubmit={handleSubmit}
-            >
-              <FormTextInput
-                name="nombre"
-                label="Nombres"
-                placeholder="Juan Manuel"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values && values.nombre}
-                error={errors && errors.nombre}
-              />
-              <FormTextInput
-                name="apellido"
-                label="Apellidos"
-                placeholder="Perez Gonzales"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values && values.apellido}
-                error={errors && errors.apellido}
-              />
-              <FormTextInput
-                name="rut"
-                label="RUT"
-                placeholder="12.345.678-9"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values && ValidateRut.runFormat(values.rut)}
-                error={errors && errors.rut}
-              />
-              <FormTextInput
-                name="nacimiento"
-                label="Fecha Nacimiento"
-                placeholder="01-01-1990"
-                mask={[
-                  /\d/,
-                  /\d/,
-                  "-",
-                  /\d/,
-                  /\d/,
-                  "-",
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                  /\d/,
-                ]}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values && values.nacimiento}
-                error={errors && errors.nacimiento}
-              />
-              <FormTextInput
-                name="email"
-                label="Email"
-                placeholder="correo@dominio.cl"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values && values.email}
-                error={errors && errors.email}
-              />
-              <Form.Group label="Celular">
-                <Form.InputGroup>
-                  <Form.InputGroupPrepend>
-                    <Form.InputGroupText>+56</Form.InputGroupText>
-                  </Form.InputGroupPrepend>
-                  <Form.Input
-                    name="celular"
-                    placeholder="961876543"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values && values.celular}
-                    error={errors && errors.celular}
-                  />
-                </Form.InputGroup>
-              </Form.Group>
-              <Form.Group label="Teléfono">
-                <Form.InputGroup>
-                  <Form.InputGroupPrepend>
-                    <Form.InputGroupText>+56</Form.InputGroupText>
-                  </Form.InputGroupPrepend>
-                  <Form.Input
-                    name="telefono"
-                    placeholder="221876543"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values && values.telefono}
-                    error={errors && errors.telefono}
-                  />
-                </Form.InputGroup>
-              </Form.Group>
-              <FormTextInput
-                name="password"
-                type="password"
-                label="Contraseña"
-                placeholder="**********"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values && values.password}
-                error={errors && errors.password}
-              />
-            </FormCard>
-            <div style={{ textAlign: "center" }}>
-              Si tiene cuenta, <a href="/login">puede iniciar sesión aquí</a>
-              <br />
-              <Button href="/" className="mt-5">Volver al sitio web</Button>
-            </div>
-          </StandaloneFormPage>
-        )}
+            <StandaloneFormPage imageURL={logo}>
+              <FormCard
+                buttonText={"Registrar"}
+                title={"Registro de usuario"}
+                onSubmit={handleSubmit}
+              >
+                <FormTextInput
+                  name="nombre"
+                  label="Nombres"
+                  placeholder="Juan Manuel"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values && values.nombre}
+                  error={errors && errors.nombre}
+                />
+                <FormTextInput
+                  name="apellido"
+                  label="Apellidos"
+                  placeholder="Perez Gonzales"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values && values.apellido}
+                  error={errors && errors.apellido}
+                />
+                <FormTextInput
+                  name="rut"
+                  label="RUT"
+                  placeholder="12.345.678-9"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values && ValidateRut.runFormat(values.rut)}
+                  error={errors && errors.rut}
+                />
+                <FormTextInput
+                  name="nacimiento"
+                  label="Fecha Nacimiento"
+                  placeholder="01-01-1990"
+                  mask={[
+                    /\d/,
+                    /\d/,
+                    "-",
+                    /\d/,
+                    /\d/,
+                    "-",
+                    /\d/,
+                    /\d/,
+                    /\d/,
+                    /\d/,
+                  ]}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values && values.nacimiento}
+                  error={errors && errors.nacimiento}
+                />
+                <FormTextInput
+                  name="email"
+                  label="Email"
+                  placeholder="correo@dominio.cl"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values && values.email}
+                  error={errors && errors.email}
+                />
+                <Form.Group label="Celular">
+                  <Form.InputGroup>
+                    <Form.InputGroupPrepend>
+                      <Form.InputGroupText>+56</Form.InputGroupText>
+                    </Form.InputGroupPrepend>
+                    <Form.Input
+                      name="celular"
+                      placeholder="961876543"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values && values.celular}
+                      error={errors && errors.celular}
+                    />
+                  </Form.InputGroup>
+                </Form.Group>
+                <Form.Group label="Teléfono">
+                  <Form.InputGroup>
+                    <Form.InputGroupPrepend>
+                      <Form.InputGroupText>+56</Form.InputGroupText>
+                    </Form.InputGroupPrepend>
+                    <Form.Input
+                      name="telefono"
+                      placeholder="221876543"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values && values.telefono}
+                      error={errors && errors.telefono}
+                    />
+                  </Form.InputGroup>
+                </Form.Group>
+                <FormTextInput
+                  name="password"
+                  type="password"
+                  label="Contraseña"
+                  placeholder="**********"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values && values.password}
+                  error={errors && errors.password}
+                />
+              </FormCard>
+              <div style={{ textAlign: "center" }}>
+                Si tiene cuenta, <a href="/login">puede iniciar sesión aquí</a>
+                <br />
+                <Button href="/" className="mt-5">Volver al sitio web</Button>
+              </div>
+            </StandaloneFormPage>
+          )}
       />
     );
   }

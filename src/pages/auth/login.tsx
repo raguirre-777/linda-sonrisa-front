@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Formik } from "formik";
 import { StandaloneFormPage, FormTextInput } from "tabler-react";
-import logo from "../../../assets/logo.png";
-import { Auth } from "../../../api/auth";
+import logo from "../../assets/logo.png";
+import { Auth } from "../../api/auth";
 import { withRouter } from "react-router-dom";
-import { ValidateRut } from "../../../api/validate";
-import FormCard from "../../../components/form-card";
+import { ValidateRut } from "../../api/validate";
+import FormCard from "../../components/form-card";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setSession } from "../../../redux/action";
+import { setSession } from "../../redux/action";
 import swal from "sweetalert"; // errores
 import { Button } from "antd";
 
@@ -21,13 +21,10 @@ class LoginPage extends React.Component<Props> {
   render() {
     return (
       <Formik
-        //
         initialValues={{
           rut: "",
           password: "",
         }}
-
-        //
         validate={(values) => {
           let errors = {} as any;
           if (!values.rut) {
@@ -41,8 +38,6 @@ class LoginPage extends React.Component<Props> {
           }
           return errors;
         }}
-
-        //
         onSubmit={async (values, { setSubmitting, setErrors }) => {
           try {
             values.rut = values.rut
@@ -54,14 +49,7 @@ class LoginPage extends React.Component<Props> {
               .join()
               .toUpperCase();
             setSubmitting(true);
-
-            // LOGIN 
-
             const result = await Auth.login(values);
-            const resultlocal = await Auth.sigin(values);
-
-            console.log(resultlocal)
-            //
             if (!result.error) {
               this.props.setSession(result.data);
               localStorage.setItem("session", JSON.stringify(result.data));
@@ -81,8 +69,6 @@ class LoginPage extends React.Component<Props> {
             swal("Lo sentimos", error, "error");
           }
         }}
-
-        //
         render={({
           values,
           errors,
@@ -118,7 +104,7 @@ class LoginPage extends React.Component<Props> {
                   value={values && values.password}
                   error={errors && errors.password}
                 />
-                <a href="/recuperar-contrasena"></a>
+                <a href="/recuperar-contrasena">Recuperar contraseña</a>
               </FormCard>
               <div style={{ textAlign: "center" }}>
                 Si no tiene cuenta, <a href="/register">registrese aquí</a>
@@ -142,6 +128,8 @@ const mapDispatchToProps = (dispatch: any) =>
     dispatch
   );
 
+export default withRouter(connect(null, mapDispatchToProps)(LoginPage));
+
 
 // Algunos componentes (comúnmente un componente de encabezado) aparecen en cada página,
 // por lo que no están envueltos en un <Route>:
@@ -151,4 +139,4 @@ const mapDispatchToProps = (dispatch: any) =>
 // Exportar predeterminado conRouter (Encabezado)
 // Esto le da acceso al componente Encabezado a this.props.history, lo que significa que el encabezado 
 // ahora puede redirigir al usuario.
-export default withRouter(connect(null, mapDispatchToProps)(LoginPage));
+

@@ -1,10 +1,10 @@
 import * as React from "react";
 import { StandaloneFormPage } from "tabler-react";
 import { withRouter, Redirect } from "react-router-dom";
-import FormCard from "../../../components/form-card";
+import FormCard from "../../components/form-card";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { setSession } from "../../../redux/action";
+import { setSession } from "../../redux/action";
 
 type Props = {
   setSession: any;
@@ -25,7 +25,7 @@ class LogoutPage extends React.Component<Props> {
       );
     }
     return (
-      <StandaloneFormPage imageURL={require("../../../assets/logo.png")}>
+      <StandaloneFormPage imageURL={require("../../assets/logo.png")}>
         <FormCard title={"Acceso de usuario"} isLoading={false} onSubmit={undefined}>
           <h2>Saliendo...</h2>
         </FormCard>

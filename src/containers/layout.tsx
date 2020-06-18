@@ -44,14 +44,28 @@ class Layout extends React.Component<Props> {
         {
           value: "Nosotros",
           to: "/nosotros",
-          icon: "users",
+          icon: "layers",
+          LinkComponent: withRouter(NavLink),
+          useExact: true,
+        },
+        {
+          value: "Convenios",
+          to: "/convenios",
+          icon: "thumbs-up",
+          LinkComponent: withRouter(NavLink),
+          useExact: true,
+        },
+        {
+          value: "Pacientes",
+          to: "/login",
+          icon: "user",
           LinkComponent: withRouter(NavLink),
           useExact: true,
         },
         {
           value: "Administradores",
           to: "/login",
-          icon: "map-pin",
+          icon: "zap",
           LinkComponent: withRouter(NavLink),
           useExact: true,
         },
@@ -273,7 +287,7 @@ class Layout extends React.Component<Props> {
 
     if (isHome && user === undefined) {
       icon = require("../assets/icons/appointment.png");
-      fullName = "Reservar hora";
+      fullName = "Login";
       options = [
         {
           icon: "user",

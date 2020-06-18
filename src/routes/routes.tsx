@@ -4,19 +4,26 @@ import { connect } from "react-redux";
 
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 
-import HomePageWeb from "../pages/web/home";
-import AboutPageWeb from "../pages/web/about";
+
+
+
+//All
+import HomePageWeb from "../pages/home";
+import AboutPageWeb from "../pages/about";
+import DealPageWeb from "../pages/deal";
+import LoginPage from "../pages/auth/login";
+import LogoutPage from "../pages/auth/logout";
+import Error404Page from "../pages/404";
+import RePassPage from "../pages/auth/repass";
+import RegisterPage from "../pages/auth/register";
+
+
+//Pacientes
 import HomePage from "../pages/agenda/home";
 import ProfilePage from "../pages/agenda/profile";
-import Error404Page from "../pages/agenda/error/404";
-import LoginPage from "../pages/agenda/auth/login";
-import LogoutPage from "../pages/agenda/auth/logout";
-import RePassPage from "../pages/agenda/auth/repass";
-import RegisterPage from "../pages/agenda/auth/register";
-import SettingsPage from "../pages/agenda/config/settings";
-import AppointmentCreatePage from "../pages/agenda/appointment/create";
-import AppointmentMePage from "../pages/agenda/appointment/me";
-import AppointmentReservedPage from "../pages/agenda/appointment/reserved";
+
+
+//Admin
 
 type Props = {
   session: any;
@@ -79,6 +86,12 @@ class Routes extends Component<Props> {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/logout" component={LogoutPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/nosotros" component={AboutPageWeb} />
+        <Route exact path="/convenios" component={DealPageWeb} />
+        <Route exact path="/" component={HomePageWeb} />
+
+        <Route exact path="/test" component={HomePageWeb} />
+
         <PrivateRoute exact path="/agenda" session={this.props.session}>
           <HomePage />
         </PrivateRoute>
@@ -86,36 +99,6 @@ class Routes extends Component<Props> {
           <ProfilePage />
         </PrivateRoute>
 
-        <PrivateRoute
-          exact
-          path="/agenda/configuracion"
-          session={this.props.session}
-        >
-          <SettingsPage />
-        </PrivateRoute>
-        <PrivateRoute
-          exact
-          path="/agenda/reservas/crear"
-          session={this.props.session}
-        >
-          <AppointmentCreatePage />
-        </PrivateRoute>
-        <PrivateRoute
-          exact
-          path="/agenda/reservas/mis-reservas"
-          session={this.props.session}
-        >
-          <AppointmentMePage />
-        </PrivateRoute>
-        <PrivateRoute
-          exact
-          path="/agenda/reservas/reservar"
-          session={this.props.session}
-        >
-          <AppointmentReservedPage />
-        </PrivateRoute>
-        <Route exact path="/nosotros" component={AboutPageWeb} />
-        <Route exact path="/" component={HomePageWeb} />
         <Route component={Error404Page} />
       </Switch>
     );
