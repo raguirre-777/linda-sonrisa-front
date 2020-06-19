@@ -64,7 +64,7 @@ class Layout extends React.Component<Props> {
         },
         {
           value: "Administradores",
-          to: "/login",
+          to: "/admin",
           icon: "zap",
           LinkComponent: withRouter(NavLink),
           useExact: true,

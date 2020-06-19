@@ -88,7 +88,19 @@ export default class PacientePageWeb extends React.Component {
                 <Grid.Col lg={6}>
                   <Card>
                     <Card.Header>
-                      <Card.Title>Horas</Card.Title>
+                      <Card.Title>Pide tu hora!</Card.Title>
+                    </Card.Header>
+                    <Card.Body>
+
+                      <Button type="primary" block>
+                        Pedir Hora
+                      </Button>
+
+                    </Card.Body>
+                  </Card>
+                  <Card>
+                    <Card.Header>
+                      <Card.Title>Revisa tu lista de horas</Card.Title>
                     </Card.Header>
                     <Card.Body>
 
@@ -129,7 +141,7 @@ export default class PacientePageWeb extends React.Component {
                 <Grid.Col lg={6}>
                   <Card>
                     <Card.Header>
-                      <Card.Title>Mis Datos</Card.Title>
+                      <Card.Title>Actualiza tus datos</Card.Title>
                     </Card.Header>
                     <Card.Body>
 
@@ -154,7 +166,7 @@ export default class PacientePageWeb extends React.Component {
                           </Form.Item>
                           <div className="d-flex justify-content-center mb-5">
                             <Form.Item >
-                              <Button type="primary" >Editar </Button>
+                              <Button type="primary" >Actualizar </Button>
                             </Form.Item>
                           </div>
                         </Form>

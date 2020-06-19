@@ -20,6 +20,7 @@ import RegisterPage from "../pages/auth/register";
 
 //Pacientes
 import PacientePageWeb from "../pages/paciente/paciente-home";
+import AdminPageWeb from "../pages/admin/admin-home";
 
 
 
@@ -93,6 +94,7 @@ class Routes extends Component<Props> {
         <Route exact path="/" component={HomePageWeb} />
 
         <Route exact path="/paciente" component={PacientePageWeb} />
+        <Route exact path="/admin" component={AdminPageWeb} />
 
 
         <Route component={Error404Page} />
