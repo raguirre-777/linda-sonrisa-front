@@ -19,8 +19,10 @@ import RegisterPage from "../pages/auth/register";
 
 
 //Pacientes
-import HomePage from "../pages/agenda/home";
-import ProfilePage from "../pages/agenda/profile";
+import PacientePageWeb from "../pages/paciente/paciente-home";
+
+
+
 
 
 //Admin
@@ -90,14 +92,8 @@ class Routes extends Component<Props> {
         <Route exact path="/convenios" component={DealPageWeb} />
         <Route exact path="/" component={HomePageWeb} />
 
-        <Route exact path="/test" component={HomePageWeb} />
+        <Route exact path="/paciente" component={PacientePageWeb} />
 
-        <PrivateRoute exact path="/agenda" session={this.props.session}>
-          <HomePage />
-        </PrivateRoute>
-        <PrivateRoute exact path="/agenda/perfil" session={this.props.session}>
-          <ProfilePage />
-        </PrivateRoute>
 
         <Route component={Error404Page} />
       </Switch>

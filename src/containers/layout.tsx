@@ -57,7 +57,7 @@ class Layout extends React.Component<Props> {
         },
         {
           value: "Pacientes",
-          to: "/login",
+          to: "/paciente",
           icon: "user",
           LinkComponent: withRouter(NavLink),
           useExact: true,
