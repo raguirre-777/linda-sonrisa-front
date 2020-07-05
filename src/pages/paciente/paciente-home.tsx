@@ -110,7 +110,7 @@ export default class PacientePageWeb extends React.Component {
                         renderItem={item => (
                           <List.Item>
                             <List.Item.Meta
-                              avatar={<Avatar />} // ICONO DE ESTADOS 
+                              avatar={<Avatar />}
                               title={
                                 <Text type="secondary">
                                   {item.nombre} {<Divider type="horizontal" />}

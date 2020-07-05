@@ -11,7 +11,7 @@ type Props = {
   onSubmit?: Function;
 };
 
-function FormCard({
+export default function FormCard({
   children,
   action,
   method,
@@ -42,4 +42,4 @@ function FormCard({
   );
 }
 
-export default FormCard;
+

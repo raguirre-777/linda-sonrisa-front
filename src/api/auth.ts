@@ -6,7 +6,7 @@ import { ChangePasswordDto } from './dto/change-password.dto';
 import { Request } from './request';
 
 const request = new Request(SERVICIO_ENDPOINT); // http://localhost:8000/api/auth/signin
-const local = new Request(LOCAL);
+//const local = new Request(LOCAL);
 
 export class Auth {
     static async login(login: LoginDto) {
@@ -16,9 +16,7 @@ export class Auth {
 
     static async sigin(login: LoginDto) {
         localStorage.removeItem("session");
-        return await local.post('/auth/signin', login);
-
-        //http://localhost:8000/api/auth/signin
+        return await request.post('/auth/signin', login);
     }
 
     static async recovery(recovery: RecoveryDto) {
