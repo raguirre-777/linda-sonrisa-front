@@ -2,15 +2,19 @@ import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid, Card } from "tabler-react";
 import Layout from "../../containers/layout";
 import 'antd/dist/antd.css';
-import Menu from "./../../containers/menu";
+import Menu from "../../containers/menu";
 import { Table } from 'react-bootstrap';
 
 const API = process.env.REACT_APP_API;
 
-export const Users = () => {
-  const [username, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export const Proveedor = () => {
+  // const [username, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  const [name, setName] = useState("");
+  const [codigo, setCodigo] = useState("");
+  const [description, setDescription] = useState("");
 
   const [editing, setEditing] = useState(false);
   const [id, setId] = useState("");
@@ -22,28 +26,28 @@ export const Users = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!editing) {
-      const res = await fetch(`${API}/users`, {
+      const res = await fetch(`${API}/proveedor`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
-          email,
-          password,
+          name,
+          codigo,
+          description,
         }),
       });
       await res.json();
     } else {
-      const res = await fetch(`${API}/users/${id}`, {
+      const res = await fetch(`${API}/proveedor/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username,
-          email,
-          password,
+          name,
+          codigo,
+          description,
         }),
       });
       const data = await res.json();
@@ -54,13 +58,13 @@ export const Users = () => {
     await getUsers();
 
     setName("");
-    setEmail("");
-    setPassword("");
+    setCodigo("");
+    setDescription("");
     //   nameInput.current.focus();
   };
 
   const getUsers = async () => {
-    const res = await fetch(`${API}/users`);
+    const res = await fetch(`${API}/proveedor`);
     const data = await res.json();
     setUsers(data);
   };
@@ -70,7 +74,7 @@ export const Users = () => {
   const deleteUser = async (id) => {
     const userResponse = window.confirm("Are you sure you want to delete it?");
     if (userResponse) {
-      const res = await fetch(`${API}/users/${id}`, {
+      const res = await fetch(`${API}/proveedor/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
@@ -80,16 +84,16 @@ export const Users = () => {
   };
 
   const editUser = async (id) => {
-    const res = await fetch(`${API}/users/${id}`);
+    const res = await fetch(`${API}/proveedor/${id}`);
     const data = await res.json();
 
     setEditing(true);
     setId(id);
 
     // Reset
-    setName(data.username);
-    setEmail(data.email);
-    setPassword(data.password);
+    setName(data.name);
+    setCodigo(data.codigo);
+    setDescription(data.description);
     //nameInput.current.focus();
   };
 
@@ -109,7 +113,7 @@ export const Users = () => {
     const [datosUser, setDatosUser] = useState([])
 
     useEffect(() => {
-      fetch(`${API}/users`)
+      fetch(`${API}/proveedor`)
         .then(response => response.json())
         .then(datos => {
           setDatosUser(datos)
@@ -134,7 +138,7 @@ export const Users = () => {
             <Grid.Col lg={9}>
               <Card>
                 <Card.Header>
-                  <Card.Title>Mantenedor de Usuarios</Card.Title>
+                  <Card.Title>Mantenedor de Proveedor</Card.Title>
                 </Card.Header>
                 <Card.Body>
                   <form onSubmit={handleSubmit} className="card card-body">
@@ -142,33 +146,33 @@ export const Users = () => {
                       <input
                         type="text"
                         onChange={(e) => setName(e.target.value)}
-                        value={username}
+                        value={name}
                         className="form-control"
-                        placeholder="Username"
+                        placeholder="Nombre"
                         ref={nameInput}
                         autoFocus
                       />
                     </div>
                     <div className="form-group">
                       <input
-                        type="email"
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
+                        type="text"
+                        onChange={(e) => setCodigo(e.target.value)}
+                        value={codigo}
                         className="form-control"
-                        placeholder="User's Email"
+                        placeholder="Codigo"
                       />
                     </div>
                     <div className="form-group">
                       <input
-                        type="password"
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
+                        type="text"
+                        onChange={(e) => setDescription(e.target.value)}
+                        value={description}
                         className="form-control"
-                        placeholder="User's Password"
+                        placeholder="Descripción"
                       />
                     </div>
                     <button className="btn btn-primary btn-block">
-                      {editing ? "Update" : "Create"}
+                      {editing ? "Actualizar" : "Crear"}
                     </button>
                   </form>
                 </Card.Body>
@@ -181,16 +185,18 @@ export const Users = () => {
                 <Table className="table table-striped">
                   <thead>
                     <tr>
-                      <th>Nombre Usuario</th>
-                      <th>Email</th>
+                      <th>Nombre</th>
+                      <th>Codigo</th>
+                      <th>Descripción</th>
                       <th>Operations</th>
                     </tr>
                   </thead>
                   <tbody>
                     {datosUser.map((user: any) => (
                       <tr key={user.id}>
-                        <td>{user.username}</td>
-                        <td>{user.email}</td>
+                        <td>{user.name}</td>
+                        <td>{user.codigo}</td>
+                        <td>{user.description}</td>
                         <td>
                           <button
                             className="btn btn-secondary btn-sm btn-block"

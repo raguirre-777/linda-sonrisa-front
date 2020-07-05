@@ -96,7 +96,7 @@ export default function MenuGeneral() {
         { text: "Proveedor", link: "/mantenedor/proveedor" },
         { text: "Usuarios", link: "/mantenedor/usuarios" },
         { text: "Servicios", link: "/mantenedor/servicios" },
-        { text: "Producto", link: "/mantenedor/modules" },
+        { text: "Producto", link: "/mantenedor/productos" },
         { text: "Roles", link: "/mantenedor/roles" },
       ],
     });

@@ -2,12 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Container, Grid, Card } from "tabler-react";
 import Layout from "../../containers/layout";
 import 'antd/dist/antd.css';
-import Menu from "./../../containers/menu";
+import Menu from "../../containers/menu";
 import { Table } from 'react-bootstrap';
 
 const API = process.env.REACT_APP_API;
 
-export const Users = () => {
+export const Roles = () => {
   const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ export const Users = () => {
       await res.json();
     } else {
       const res = await fetch(`${API}/users/${id}`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },

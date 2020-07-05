@@ -27,6 +27,10 @@ import Dashboard from "../containers/dashboard";
 
 //Mantenedores
 import { Users } from "../components/mantenedores/users";
+import { Producto } from "../components/mantenedores/producto";
+import { Proveedor } from "../components/mantenedores/proveedor";
+import { Servicio } from "../components/mantenedores/servicio";
+import { Roles } from "../components/mantenedores/roles";
 
 
 
@@ -107,10 +111,11 @@ class Routes extends Component<Props> {
                 {/* MANTENEDORES */}
 
                 <Route exact path="/mantenedor/usuarios" component={Users} />
-                <Route exact path="/mantenedor/proveedor" component={Dashboard} />
-                <Route exact path="/mantenedor/servicios" component={Dashboard} />
-                <Route exact path="/mantenedor/producto" component={Dashboard} />
-                <Route exact path="/mantenedor/roles" component={Dashboard} />
+                <Route exact path="/mantenedor/roles" component={Roles} />
+                <Route exact path="/mantenedor/proveedor" component={Proveedor} />
+                <Route exact path="/mantenedor/servicios" component={Servicio} />
+                <Route exact path="/mantenedor/productos" component={Producto} />
+
 
                 <Route component={Error404Page} />
             </ Switch>
