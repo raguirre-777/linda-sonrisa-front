@@ -1,15 +1,15 @@
+
+
 export interface UserDto {
     id?: number;
-    rut: string;
+    rut?: string;
+    username?: string;
     password?: string;
-    name: string;
-    lastName: string;
+    name?: string;
+    lastName?: string;
     email: string;
-    phone: string;
-    mobile: string;
-    role?: string;
+    phone?: string;
+    mobile?: string;
+    roles?: string;
     status?: string;
-    dateBirth: Date;
-    userMedicalSpecialities?: any[];
-    userMedicalCenters?: any[];
 }

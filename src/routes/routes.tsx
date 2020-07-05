@@ -11,14 +11,21 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import HomePageWeb from "../pages/home";
 import AboutPageWeb from "../pages/about";
 import DealPageWeb from "../pages/deal";
+import Error404Page from "../pages/404";
+
+
+//Auth
 import LoginPage from "../pages/auth/login";
 import LogoutPage from "../pages/auth/logout";
-import Error404Page from "../pages/404";
 import RegisterPage from "../pages/auth/register";
+
+
+
 
 
 //Pacientes
 import PacientePageWeb from "../pages/paciente/paciente-home";
+import Home from "../pages/paciente/home";
 import AdminPageWeb from "../pages/admin/admin-home";
 import MenuPaciente from "../containers/menu-paciente";
 import MenuGeneral from "../containers/menu";
@@ -31,6 +38,9 @@ import { Producto } from "../components/mantenedores/producto";
 import { Proveedor } from "../components/mantenedores/proveedor";
 import { Servicio } from "../components/mantenedores/servicio";
 import { Roles } from "../components/mantenedores/roles";
+
+
+
 
 
 
@@ -95,17 +105,25 @@ class Routes extends Component<Props> {
         const PrivateRoute = this.PrivateRoute;
         return (
             <Switch>
+                {/* AUTH */}
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/logout" component={LogoutPage} />
                 <Route exact path="/register" component={RegisterPage} />
+                <Route exact path="/recuperar-contrasena" component={Error404Page} />
+
+                {/* WEB */}
                 <Route exact path="/nosotros" component={AboutPageWeb} />
                 <Route exact path="/convenios" component={DealPageWeb} />
                 <Route exact path="/" component={HomePageWeb} />
-
                 <Route exact path="/paciente" component={PacientePageWeb} />
                 <Route exact path="/admin" component={AdminPageWeb} />
 
-                <Route exact path="/home" component={Dashboard} />
+
+
+
+                <PrivateRoute exact path="/home" session={this.props.session}>
+                    <Dashboard />
+                </PrivateRoute>
 
 
                 {/* MANTENEDORES */}

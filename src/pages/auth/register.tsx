@@ -122,7 +122,6 @@ class RegisterPage extends React.Component<Props> {
             lastName: values.apellido,
             password: values.password,
             email: values.email,
-            dateBirth: moment(values.nacimiento, "DD-MM-YYYY").toDate(),
             phone: values.telefono,
             mobile: values.celular,
           };

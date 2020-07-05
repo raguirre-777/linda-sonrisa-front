@@ -4,13 +4,14 @@ import { StandaloneFormPage, FormTextInput } from "tabler-react";
 import logo from "../../assets/logo.png";
 import { Auth } from "../../api/auth";
 import { withRouter } from "react-router-dom";
-import { ValidateRut } from "../../api/validate";
+
 import FormCard from "../../components/form-card";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSession } from "../../redux/action";
 import swal from "sweetalert"; // errores
 import { Button } from "antd";
+import { ValidateRut } from "../../api/validate";
 
 type Props = {
   setSession: any;
@@ -22,16 +23,13 @@ class LoginPage extends React.Component<Props> {
     return (
       <Formik
         initialValues={{
-          rut: "",
+          username: "",
           password: "",
         }}
         validate={(values) => {
           let errors = {} as any;
-          if (!values.rut) {
-            errors.rut = "Debe ingresar rut";
-          }
-          if (!ValidateRut.rut(values.rut)) {
-            errors.rut = "Rut invalido";
+          if (!values.username) {
+            errors.username = "Debe ingresar username";
           }
           if (!values.password) {
             errors.password = "Debe ingresar contraseña";
@@ -40,16 +38,12 @@ class LoginPage extends React.Component<Props> {
         }}
         onSubmit={async (values, { setSubmitting, setErrors }) => {
           try {
-            values.rut = values.rut
-              .split(".")
-              .join("")
-              .split("-")
-              .join("")
+            values.username = values.username
               .split(" ")
               .join()
-              .toUpperCase();
             setSubmitting(true);
-            const result = await Auth.login(values);
+            const result = await Auth.sigin(values);
+            console.log(result.data);
             if (!result.error) {
               this.props.setSession(result.data);
               localStorage.setItem("session", JSON.stringify(result.data));
@@ -58,7 +52,7 @@ class LoginPage extends React.Component<Props> {
                 localStorage.removeItem("last_path");
                 this.props.history.push(lastPath);
               } else {
-                this.props.history.push("/agenda");
+                this.props.history.push("/home");
               }
             } else {
               setSubmitting(false);
@@ -86,13 +80,13 @@ class LoginPage extends React.Component<Props> {
                 onSubmit={handleSubmit}
               >
                 <FormTextInput
-                  name="rut"
-                  label="RUT"
-                  placeholder="12.345.678-9"
+                  name="username"
+                  label="Usuario"
+                  placeholder="usuario123"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values && ValidateRut.runFormat(values.rut)}
-                  error={errors && errors.rut}
+                  value={values && values.username}
+                  error={errors && errors.username}
                 />
                 <FormTextInput
                   name="password"

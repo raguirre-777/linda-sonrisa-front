@@ -43,31 +43,36 @@ class LayoutPrincipal extends React.Component<Props> {
           LinkComponent: withRouter(NavLink),
           useExact: true,
         },
-        {
-          value: "Pacientes",
-          to: "/paciente",
-          icon: "user",
-          LinkComponent: withRouter(NavLink),
-          useExact: true,
-        },
-        {
-          value: "Administradores",
-          to: "/admin",
-          icon: "zap",
-          LinkComponent: withRouter(NavLink),
-          useExact: true,
-        },
-        {
-          value: "Login",
-          to: "/home",
-          icon: "zap",
-          LinkComponent: withRouter(NavLink),
-          useExact: true,
-        },
       ];
-    } else {
-
     }
+
+
+
+    let icon = require("../assets/icons/appointment.png");
+    let fullName = "Login";
+    let options = [
+      {
+        icon: "user",
+        value: "Iniciar sesión",
+        to: "/login",
+        LinkComponent: withRouter(NavLink),
+      },
+      { isDivider: true },
+      {
+        icon: "user-plus",
+        value: "Registrar",
+        to: "/register",
+        LinkComponent: withRouter(NavLink),
+      },
+    ];
+
+    const accountDropdownProps = {
+      avatarURL: icon,
+      name: fullName,
+      // description: rol,
+      options,
+    };
+
 
     return (
       <Site.Wrapper
@@ -75,13 +80,16 @@ class LayoutPrincipal extends React.Component<Props> {
           href: "/",
           alt: "Linda sonrisa",
           imageURL: logo,
+          accountDropdown: accountDropdownProps,
         }}
         navProps={{ itemsObjects: navBarItems }}
         routerContextComponentType={withRouter(RouterContextProvider)}
+
       >
         <Page.Content title={this.props.title} style={{ minHeight: "100vh" }}>
           {this.props.children}
         </Page.Content>
+
       </Site.Wrapper>
     );
   }

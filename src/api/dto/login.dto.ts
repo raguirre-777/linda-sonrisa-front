@@ -1,4 +1,4 @@
 export interface LoginDto {
-    rut: string;
+    username: string;
     password: string;
 }

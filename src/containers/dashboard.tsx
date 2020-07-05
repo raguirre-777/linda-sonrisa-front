@@ -9,7 +9,7 @@ interface Component {
   component: Object;
 }
 
-function Dashboard(props: Component) {
+function Dashboard() {
   return (
     <div className="root-container">
       <LayoutPrincipal isHome={true}>
@@ -33,7 +33,7 @@ function Dashboard(props: Component) {
             <Menu />
           </Col>
           <Col xs={12} md={9} lg={10}>
-            {props.component}
+
           </Col>
         </Row>
       </LayoutPrincipal>

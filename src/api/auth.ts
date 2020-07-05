@@ -5,8 +5,8 @@ import { RecoveryDto } from './dto/recovery.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { Request } from './request';
 
-const request = new Request(SERVICIO_ENDPOINT); // http://localhost:8000/api/auth/signin
-//const local = new Request(LOCAL);
+const request = new Request(SERVICIO_ENDPOINT);
+
 
 export class Auth {
     static async login(login: LoginDto) {
