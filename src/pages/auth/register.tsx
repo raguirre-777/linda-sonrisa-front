@@ -119,6 +119,7 @@ class RegisterPage extends React.Component<Props> {
           const newUser: UserDto = {
             rut: values.rut,
             name: values.nombre,
+            username: values.nombre,
             lastName: values.apellido,
             password: values.password,
             email: values.email,

@@ -4,14 +4,8 @@ import { Link } from "react-router-dom";
 import { Collapse } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import {
-  DesktopOutlined,
-  PieChartOutlined,
   FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-  EditFilled,
 } from '@ant-design/icons';
-
 import {
   faTachometerAlt,
   faUserAlt,
@@ -19,14 +13,13 @@ import {
   faCog,
   faShippingFast,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const { Panel } = Collapse;
 const { SubMenu } = Menu;
 
 export default function MenuGeneral() {
-  const session = localStorage.getItem("user");
+  const session = localStorage.getItem("role");
   const [isSmall, setIsSmall] = useState(
     document.documentElement.clientWidth > 767
   );
@@ -36,12 +29,10 @@ export default function MenuGeneral() {
     setIsSmall(w > 767);
   });
 
-  let rol = "SUPER";
-  // if (session !== null) {
-  //   const user = JSON.parse(session);
-
-  //   rol = user.role.code;
-  // }
+  let rol = session;
+  if (session !== null) {
+    console.log(session);
+  }
 
   const menus = [
     {
@@ -54,10 +45,48 @@ export default function MenuGeneral() {
 
 
   if (rol === "PACIENTE") {
+    menus.push({
+      icon: faEnvelope,
+      text: "Hora",
+      link: "/hora",
+      submenu: [
+        { text: "Solicitud", link: "/hora/hora-form" },
+        { text: "Historial de horas", link: "/hora/historic-hora" },
+      ],
+    });
+    menus.push({
+      icon: faUserAlt,
+      text: "Mis Datos",
+      link: "/mis-datos",
+      submenu: [
+        { text: "Editar", link: "/hora/edit-form" },
+      ],
+    });
   }
 
   if (rol === "ADMIN") {
-
+    menus.push({
+      icon: faShippingFast,
+      text: "Pedido",
+      link: "/op",
+      submenu: [
+        { text: "Emitir OP", link: "/op/emitir-form" },
+        { text: "Recepcionar OP", link: "/op/recepcion-form" },
+        { text: "Historial de OP", link: "/oc/historic-op" },
+      ],
+    });
+    menus.push({
+      icon: faCog,
+      text: "Mantenedor",
+      link: "/mantenedor",
+      submenu: [
+        { text: "Proveedor", link: "/mantenedor/proveedor" },
+        { text: "Usuarios", link: "/mantenedor/usuarios" },
+        { text: "Servicios", link: "/mantenedor/servicios" },
+        { text: "Producto", link: "/mantenedor/productos" },
+        { text: "Roles", link: "/mantenedor/roles" },
+      ],
+    });
   }
 
   if (rol === "SUPER") {

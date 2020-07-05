@@ -24,10 +24,9 @@ import RegisterPage from "../pages/auth/register";
 
 
 //Pacientes
-import PacientePageWeb from "../pages/paciente/paciente-home";
+import HomePage from "../pages/paciente/home";
 import Home from "../pages/paciente/home";
 import AdminPageWeb from "../pages/admin/admin-home";
-import MenuPaciente from "../containers/menu-paciente";
 import MenuGeneral from "../containers/menu";
 import Dashboard from "../containers/dashboard";
 
@@ -115,14 +114,12 @@ class Routes extends Component<Props> {
                 <Route exact path="/nosotros" component={AboutPageWeb} />
                 <Route exact path="/convenios" component={DealPageWeb} />
                 <Route exact path="/" component={HomePageWeb} />
-                <Route exact path="/paciente" component={PacientePageWeb} />
-                <Route exact path="/admin" component={AdminPageWeb} />
+                {/* <Route exact path="/paciente" component={PacientePageWeb} />
+                <Route exact path="/admin" component={AdminPageWeb} /> */}
 
-
-
-
+                {/* HOME */}
                 <PrivateRoute exact path="/home" session={this.props.session}>
-                    <Dashboard />
+                    <HomePage />
                 </PrivateRoute>
 
 

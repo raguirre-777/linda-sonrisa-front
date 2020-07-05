@@ -3,7 +3,7 @@
 export interface UserDto {
     id?: number;
     rut?: string;
-    username?: string;
+    username: string;
     password?: string;
     name?: string;
     lastName?: string;

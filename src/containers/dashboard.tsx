@@ -4,6 +4,9 @@ import Col from "react-bootstrap/Col";
 // import Header from "./header";
 import Menu from "./menu";
 import LayoutPrincipal from './layout';
+import HomePage from '../pages/paciente/home';
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 interface Component {
   component: Object;
@@ -33,7 +36,7 @@ function Dashboard() {
             <Menu />
           </Col>
           <Col xs={12} md={9} lg={10}>
-
+            <HomePage />
           </Col>
         </Row>
       </LayoutPrincipal>
@@ -41,4 +44,9 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+const mapStateToProps = (state: any) => {
+  const { reducers } = state;
+  return { session: reducers.session };
+};
+
+export default withRouter(connect(mapStateToProps)(Dashboard));
