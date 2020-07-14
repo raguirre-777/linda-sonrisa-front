@@ -98,7 +98,7 @@ class LoginPage extends React.Component<Props> {
                   value={values && values.password}
                   error={errors && errors.password}
                 />
-                <a href="/recuperar-contrasena">Recuperar contraseña</a>
+                {/* <a href="/recuperar-contrasena">Recuperar contraseña</a> */}
               </FormCard>
               <div style={{ textAlign: "center" }}>
                 Si no tiene cuenta, <a href="/register">registrese aquí</a>

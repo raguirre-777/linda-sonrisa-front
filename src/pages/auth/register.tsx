@@ -31,67 +31,19 @@ class RegisterPage extends React.Component<Props> {
     return (
       <Formik
         initialValues={{
-          nombre: "",
-          apellido: "",
-          rut: "",
-          telefono: "",
+          usuario: "",
           email: "",
-          nacimiento: "",
-          celular: "",
           password: "",
         }}
         validate={(values) => {
           let errors = {} as any;
 
-          if (!Validator.isAlpha(values.nombre.split(" ").join(""), "es-ES")) {
-            errors.nombre = "Nombre invalido";
-          } else if (Validator.isEmpty(values.nombre)) {
-            errors.nombre = "Debe ingresar nombre";
+          if (!Validator.isAlpha(values.usuario.split(" ").join(""), "es-ES")) {
+            errors.usuario = "usuario invalido";
+          } else if (Validator.isEmpty(values.usuario)) {
+            errors.usuario = "Debe ingresar usuario";
           }
 
-          if (
-            !Validator.isAlpha(values.apellido.split(" ").join(""), "es-ES")
-          ) {
-            errors.apellido = "Apellido invalido";
-          } else if (Validator.isEmpty(values.apellido)) {
-            errors.apellido = "Debe ingresar apellido";
-          }
-
-          if (!Validator.minLength(values.nacimiento, 10)) {
-            errors.nacimiento = "Fecha de nacimiento invalida";
-          } else if (
-            !Validator.minDate(
-              moment(values.nacimiento, "DD-MM-YYYY").toDate(),
-              new Date("1900-01-01")
-            )
-          ) {
-            errors.nacimiento = "Fecha de nacimiento invalida";
-          } else if (
-            !Validator.maxDate(
-              moment(values.nacimiento, "DD-MM-YYYY").toDate(),
-              new Date()
-            )
-          ) {
-            errors.nacimiento = "Fecha de nacimiento invalida";
-          } else if (Validator.isEmpty(values.nacimiento)) {
-            errors.nacimiento = "Debe ingresar fecha de nacimiento";
-          }
-
-          if (!Validator.isPhoneNumber(values.celular, "CL")) {
-            errors.celular = "Celular invalida";
-          } else if (Validator.isEmpty(values.celular)) {
-            errors.celular = "Debe ingresar celular";
-          }
-
-          if (!Validator.isPhoneNumber(values.telefono, "CL")) {
-            errors.telefono = "Teléfono invalida";
-          }
-
-          if (!values.rut) {
-            errors.rut = "Debe ingresar rut";
-          } else if (!ValidateRut.rut(values.rut)) {
-            errors.rut = "Rut invalido";
-          }
 
           if (Validator.isEmpty(values.password)) {
             errors.password = "Debe ingresar contraseña";
@@ -108,23 +60,10 @@ class RegisterPage extends React.Component<Props> {
           values,
           { setSubmitting, setErrors /* setValues and other goodies */ }
         ) => {
-          values.rut = values.rut
-            .split(".")
-            .join("")
-            .split("-")
-            .join("")
-            .split(" ")
-            .join()
-            .toUpperCase();
           const newUser: UserDto = {
-            rut: values.rut,
-            name: values.nombre,
-            username: values.nombre,
-            lastName: values.apellido,
+            username: values.usuario,
             password: values.password,
             email: values.email,
-            phone: values.telefono,
-            mobile: values.celular,
           };
           try {
             const result = await Auth.register(newUser);
@@ -136,7 +75,7 @@ class RegisterPage extends React.Component<Props> {
                 localStorage.removeItem("last_path");
                 this.props.history.push(lastPath);
               } else {
-                this.props.history.push("/agenda");
+                this.props.history.push("/home");
               }
             } else {
               swal("Lo sentimos", result.error.toString(), "error");
@@ -161,52 +100,13 @@ class RegisterPage extends React.Component<Props> {
                 onSubmit={handleSubmit}
               >
                 <FormTextInput
-                  name="nombre"
-                  label="Nombres"
-                  placeholder="Juan Manuel"
+                  name="usuario"
+                  label="Usuario"
+                  placeholder="Manuel123"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values && values.nombre}
-                  error={errors && errors.nombre}
-                />
-                <FormTextInput
-                  name="apellido"
-                  label="Apellidos"
-                  placeholder="Perez Gonzales"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values && values.apellido}
-                  error={errors && errors.apellido}
-                />
-                <FormTextInput
-                  name="rut"
-                  label="RUT"
-                  placeholder="12.345.678-9"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values && ValidateRut.runFormat(values.rut)}
-                  error={errors && errors.rut}
-                />
-                <FormTextInput
-                  name="nacimiento"
-                  label="Fecha Nacimiento"
-                  placeholder="01-01-1990"
-                  mask={[
-                    /\d/,
-                    /\d/,
-                    "-",
-                    /\d/,
-                    /\d/,
-                    "-",
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                    /\d/,
-                  ]}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values && values.nacimiento}
-                  error={errors && errors.nacimiento}
+                  value={values && values.usuario}
+                  error={errors && errors.usuario}
                 />
                 <FormTextInput
                   name="email"
@@ -217,36 +117,6 @@ class RegisterPage extends React.Component<Props> {
                   value={values && values.email}
                   error={errors && errors.email}
                 />
-                <Form.Group label="Celular">
-                  <Form.InputGroup>
-                    <Form.InputGroupPrepend>
-                      <Form.InputGroupText>+56</Form.InputGroupText>
-                    </Form.InputGroupPrepend>
-                    <Form.Input
-                      name="celular"
-                      placeholder="961876543"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values && values.celular}
-                      error={errors && errors.celular}
-                    />
-                  </Form.InputGroup>
-                </Form.Group>
-                <Form.Group label="Teléfono">
-                  <Form.InputGroup>
-                    <Form.InputGroupPrepend>
-                      <Form.InputGroupText>+56</Form.InputGroupText>
-                    </Form.InputGroupPrepend>
-                    <Form.Input
-                      name="telefono"
-                      placeholder="221876543"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values && values.telefono}
-                      error={errors && errors.telefono}
-                    />
-                  </Form.InputGroup>
-                </Form.Group>
                 <FormTextInput
                   name="password"
                   type="password"

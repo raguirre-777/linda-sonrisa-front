@@ -25,7 +25,7 @@ export class Auth {
     }
 
     static async register(user: UserDto) {
-        return await request.post('/auth/register', user);
+        return await request.post('/auth/signup', user);
     }
 
 

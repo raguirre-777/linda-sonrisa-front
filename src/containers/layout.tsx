@@ -22,6 +22,7 @@ class LayoutPrincipal extends React.Component<Props> {
     let user;
     let username;
     let role = r;
+    let fullName = "Mi Usuario";
 
 
 
@@ -30,6 +31,7 @@ class LayoutPrincipal extends React.Component<Props> {
       if (session !== null) {
         user = session.userDto;
         username = user.username;
+        fullName = user.username;
       }
     } catch { }
 
@@ -74,7 +76,6 @@ class LayoutPrincipal extends React.Component<Props> {
 
 
     let icon = require("../assets/icons/appointment.png");
-    let fullName = username || "Login";
     let options = [
       {
         icon: "user",
@@ -120,7 +121,6 @@ class LayoutPrincipal extends React.Component<Props> {
     const accountDropdownProps = {
       avatarURL: icon,
       name: fullName,
-      description: role,
       options,
     };
 

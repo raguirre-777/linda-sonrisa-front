@@ -8,9 +8,6 @@ import { Table } from 'react-bootstrap';
 const API = process.env.REACT_APP_API;
 
 export const Proveedor = () => {
-  // const [username, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
 
   const [name, setName] = useState("");
   const [codigo, setCodigo] = useState("");
