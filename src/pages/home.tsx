@@ -133,7 +133,7 @@ class HomePageWeb extends React.Component<Props> {
                         <Button
                           type="primary"
                           onClick={() => {
-                            this.props.history.push("/agenda");
+                            this.props.history.push("/hora/hora-form");
                           }}
                         >
                           Reservar hora

@@ -128,7 +128,7 @@ class LayoutPrincipal extends React.Component<Props> {
     return (
       <Site.Wrapper
         headerProps={{
-          href: "/",
+          href: "/home",
           alt: "Linda sonrisa",
           imageURL: logo,
           accountDropdown: accountDropdownProps,

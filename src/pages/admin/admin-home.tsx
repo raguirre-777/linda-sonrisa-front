@@ -4,23 +4,10 @@ import Layout from "../../containers/layout";
 import { Chart } from 'react-charts'
 import 'antd/dist/antd.css';
 import {
-  List,
-  Avatar,
   Button,
-  Form,
-  Input,
-  Select,
-  DatePicker,
-  TimePicker,
-  InputNumber,
   Divider,
-  Switch,
-  Typography,
-  Upload,
   message
 } from 'antd';
-import { DownloadOutlined, UploadOutlined } from '@ant-design/icons';
-
 const props = {
   name: 'file',
   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',

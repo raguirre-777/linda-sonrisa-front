@@ -1,50 +1,27 @@
 import React, { Component } from "react";
 import * as jwtDecode from "jwt-decode";
 import { connect } from "react-redux";
-
 import { Route, Switch, Redirect, withRouter } from "react-router-dom";
-
-
-
-
 //All
 import HomePageWeb from "../pages/home";
 import AboutPageWeb from "../pages/about";
 import DealPageWeb from "../pages/deal";
 import Error404Page from "../pages/404";
-
-
+import HomePage from "../pages/paciente/home";
 //Auth
 import LoginPage from "../pages/auth/login";
 import LogoutPage from "../pages/auth/logout";
 import RegisterPage from "../pages/auth/register";
-
-
-
-
-
-//Pacientes
-import HomePage from "../pages/paciente/home";
-import Home from "../pages/paciente/home";
-import AdminPageWeb from "../pages/admin/admin-home";
-import MenuGeneral from "../containers/menu";
-import Dashboard from "../containers/dashboard";
-
-
 //Mantenedores
 import { Users } from "../components/mantenedores/users";
 import { Producto } from "../components/mantenedores/producto";
 import { Proveedor } from "../components/mantenedores/proveedor";
 import { Servicio } from "../components/mantenedores/servicio";
 import { Roles } from "../components/mantenedores/roles";
-
-
-
-
-
+import PedirHoraPage from "../pages/paciente/hora";
+//Paciente
 
 //Admin
-
 type Props = {
     session: any;
 };
@@ -108,30 +85,23 @@ class Routes extends Component<Props> {
                 <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/logout" component={LogoutPage} />
                 <Route exact path="/register" component={RegisterPage} />
-                <Route exact path="/recuperar-contrasena" component={Error404Page} />
-
                 {/* WEB */}
                 <Route exact path="/nosotros" component={AboutPageWeb} />
                 <Route exact path="/convenios" component={DealPageWeb} />
                 <Route exact path="/" component={HomePageWeb} />
-                {/* <Route exact path="/paciente" component={PacientePageWeb} />
-                <Route exact path="/admin" component={AdminPageWeb} /> */}
-
                 {/* HOME */}
                 <PrivateRoute exact path="/home" session={this.props.session}>
                     <HomePage />
                 </PrivateRoute>
 
+                <Route exact path="/hora/hora-form" component={PedirHoraPage} />
 
                 {/* MANTENEDORES */}
-
                 <Route exact path="/mantenedor/usuarios" component={Users} />
                 <Route exact path="/mantenedor/roles" component={Roles} />
                 <Route exact path="/mantenedor/proveedor" component={Proveedor} />
                 <Route exact path="/mantenedor/servicios" component={Servicio} />
                 <Route exact path="/mantenedor/productos" component={Producto} />
-
-
                 <Route component={Error404Page} />
             </ Switch>
         );

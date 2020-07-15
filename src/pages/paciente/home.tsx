@@ -10,26 +10,16 @@ import Col from "react-bootstrap/Col";
 // import Header from "./header";
 import Menu from "../../containers/menu";
 import LayoutPrincipal from '../../containers/layout';
-
-
 type Props = {
   session?: any;
   history: any;
 };
-
-
-
-
 class HomePage extends Component<Props> {
-
-
   render() {
     const { token } = this.props.session;
     let role: String = "";
     const user: UserDto = jwt(token); // decode your token here
     localStorage.setItem('token', token);
-
-
 
     if (user.roles?.length != 1) {
       role = "ADMIN";
