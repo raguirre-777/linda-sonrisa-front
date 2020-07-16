@@ -20,6 +20,7 @@ class HomePage extends Component<Props> {
     let role: String = "";
     const user: UserDto = jwt(token); // decode your token here
     localStorage.setItem('token', token);
+    localStorage.setItem('user', user.username);
 
     if (user.roles?.length != 1) {
       role = "ADMIN";

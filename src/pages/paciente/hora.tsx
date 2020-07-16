@@ -6,51 +6,61 @@ import {
   FormTextInput,
   Form,
 } from "tabler-react";
-import logo from "../../assets/logo.png";
+
 import * as Validator from "class-validator";
-import { PedirHoraDto } from "../../api/dto/pedir-hora.dto";
+
 import moment from "moment";
 import swal from "sweetalert";
+
 import { PedirHora } from "../../api/pedir-hora";
-import { withRouter } from "react-router-dom";
+import { PedirHoraDto } from "../../api/dto/pedir-hora.dto";
+import logo from "../../assets/logo.png";
+import Layout from "../../containers/layout";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSession } from "../../redux/action";
-import { Button, DatePicker } from "antd";
+import { withRouter } from "react-router-dom";
+
 import { Container, Grid, Card } from "tabler-react";
-import Layout from "../../containers/layout";
-import { Alert, Collapse } from "antd";
-import ReactDOM from 'react-dom';
+
+import { Alert, Collapse, Select, Radio, Input, DatePicker } from "antd";
 import 'antd/dist/antd.css';
-import { Select } from 'antd';
 
 
-const { Option } = Select;
-
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-const { Panel } = Collapse;
 type Props = {
   setSession: any;
   history: any;
 };
 
-// const [precio, setPrecio] = useState('9990');
-// const [fechaCompromiso, setFechaCompromiso] = useState(moment());
-// const [servicio, setServicio] = useState([]);
-// const [user, setUser] = useState('9990');
+class PedirHoraPage extends React.Component<Props> {
 
-const precio = '9990';
+  state = {
+    value: "Limpieza",
+  };
 
-function onChangeDate(date, dateString) {
-  console.log(date, dateString);
-}
+  onChangeRadio = e => {
+    console.log('radio checked', e.target.value);
+    this.setState({
+      value: e.target.value,
+    });
+  };
 
-export default class PedirHoraPage extends React.Component<Props> {
+  onChangeDate = e => {
+    this.setState({
+      date: e.target.value,
+    });
+  };
+
 
   render() {
-
+    const precio = '9990';
+    const radioStyle = {
+      display: 'block',
+      height: '30px',
+      lineHeight: '30px',
+    };
+    const { value } = this.state;
     return (
       <>
         <Layout isHome={true}>
@@ -64,7 +74,7 @@ export default class PedirHoraPage extends React.Component<Props> {
                         initialValues={{
                           valor: precio,
                           fecha_compromiso: "",
-                          servicio: "",
+                          servicio: this.state.value,
                           user: "",
                         }}
                         validate={(values) => {
@@ -125,18 +135,22 @@ export default class PedirHoraPage extends React.Component<Props> {
                                   value={values && values.user}
                                   error={errors && errors.user}
                                 />
-                                <FormTextInput
-                                  name="fecha_compromiso"
-                                  label="Fecha Compromiso"
-                                  type="Date"
-                                />
-                                <FormTextInput
-                                  name="servicio"
-                                  label="Servicio"
-                                  type="Select"
-                                />
-
-
+                                <DatePicker onChange={this.onChangeDate} />
+                                <br></br>
+                                <br></br>
+                                <Radio.Group onChange={this.onChangeRadio} value={value}>
+                                  <Radio style={radioStyle} value={"Limpieza"}>
+                                    Limpieza
+                                  </Radio>
+                                  <Radio style={radioStyle} value={"Ortodoncia"}>
+                                    Ortodoncia
+                                    </Radio>
+                                  <Radio style={radioStyle} value={"General"}>
+                                    Revicion General
+                                    </Radio>
+                                </Radio.Group>
+                                <br></br>
+                                <br></br>
                                 <FormTextInput
                                   name="valor"
                                   disabled
@@ -161,3 +175,14 @@ export default class PedirHoraPage extends React.Component<Props> {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch: any) =>
+  bindActionCreators(
+    {
+      setSession,
+    },
+    dispatch
+  );
+
+export default withRouter(connect(null, mapDispatchToProps)(PedirHoraPage));
+
