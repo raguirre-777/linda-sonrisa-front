@@ -57,7 +57,7 @@ export default function MenuGeneral() {
     menus.push({
       icon: faUserAlt,
       text: "Mis Datos",
-      link: "/mis-datos",
+      link: "/hora/edit-form",
       submenu: [
         { text: "Editar", link: "/hora/edit-form" },
       ],
@@ -102,7 +102,7 @@ export default function MenuGeneral() {
     menus.push({
       icon: faUserAlt,
       text: "Mis Datos",
-      link: "/mis-datos",
+      link: "/hora/edit-form",
       submenu: [
         { text: "Editar", link: "/hora/edit-form" },
       ],

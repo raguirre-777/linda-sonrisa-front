@@ -20,6 +20,7 @@ import { Proveedor } from "../components/mantenedores/proveedor";
 import { Servicio } from "../components/mantenedores/servicio";
 import { Roles } from "../components/mantenedores/roles";
 import PedirHoraPage from "../pages/paciente/hora";
+import { HoraList } from "../pages/paciente/list-hora";
 //Paciente
 
 //Admin
@@ -101,7 +102,12 @@ class Routes extends Component<Props> {
                     <MisDatosPage />
                 </PrivateRoute>
 
-                {/* <Route exact path="/hora/edit-form" component={MisDatosPage} /> */}
+                <PrivateRoute exact path="/hora/historic-hora" session={this.props.session}>
+                    <HoraList />
+                </PrivateRoute>
+
+
+
 
 
                 {/* MANTENEDORES */}

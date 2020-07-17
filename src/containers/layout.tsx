@@ -103,7 +103,7 @@ class LayoutPrincipal extends React.Component<Props> {
         {
           icon: "user",
           value: "Mis datos",
-          to: "/mis-datos",
+          to: "/hora/edit-form",
           LinkComponent: withRouter(NavLink),
         },
         { isDivider: true },
