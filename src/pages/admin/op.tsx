@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from "react";
 import Menu from "../../containers/menu";
 import Layout from "../../containers/layout";
-
+import swal from "sweetalert";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSession } from "../../redux/action";
@@ -28,9 +28,8 @@ class OrdenPedidoPage extends React.Component<Props> {
     this.state = {
       valor: "",
       producto: "",
-      proveedor: ""
-
-
+      proveedor: "",
+      user: ""
     }
   }
 
@@ -48,6 +47,7 @@ class OrdenPedidoPage extends React.Component<Props> {
     }).then((result) => {
       result.json().then((resp) => {
         console.warn("resp", resp)
+        swal("Orden Creada", "correctamente", "success");
       })
     })
   }
@@ -70,7 +70,15 @@ class OrdenPedidoPage extends React.Component<Props> {
                   <Card>
                     <Card.Body>
                       <div>
-                        <h1>Post Orden Producto</h1>
+                        <h1>Orden Producto</h1>
+
+                        <Input type="Text"
+                          value={ususario.username}
+                          name="user" placeholder="Usuario"
+                          onChange={(data) => { this.setState({ user: data.target.value }) }}
+                        />
+                        <br />
+                        <br />
                         <Input type="Number"
                           name="valor" placeholder="Ingrese Valor"
                           onChange={(data) => { this.setState({ valor: data.target.value }) }} />

@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSession } from "../../redux/action";
 import { withRouter } from "react-router-dom";
-
+import swal from "sweetalert";
 import { Container, Grid, Card } from "tabler-react";
 
 import { Alert, Collapse, Select, Radio, Input, DatePicker, Button } from "antd";
@@ -49,6 +49,7 @@ class PedirHoraPage extends React.Component<Props> {
     }).then((result) => {
       result.json().then((resp) => {
         console.warn("resp", resp)
+        swal("Hora Solicitada", "correctamente", "success");
       })
     })
   }
