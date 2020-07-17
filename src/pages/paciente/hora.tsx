@@ -1,20 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Formik } from "formik";
-import {
-  StandaloneFormPage,
-  FormCard,
-  FormTextInput,
-  Form,
-} from "tabler-react";
-
-import * as Validator from "class-validator";
-
-import moment from "moment";
-import swal from "sweetalert";
-
-import { PedirHora } from "../../api/pedir-hora";
-import { PedirHoraDto } from "../../api/dto/pedir-hora.dto";
-import logo from "../../assets/logo.png";
+import React, { useState, useEffect, useReducer } from "react";
+import Menu from "../../containers/menu";
 import Layout from "../../containers/layout";
 
 import { connect } from "react-redux";
@@ -24,146 +9,106 @@ import { withRouter } from "react-router-dom";
 
 import { Container, Grid, Card } from "tabler-react";
 
-import { Alert, Collapse, Select, Radio, Input, DatePicker } from "antd";
+import { Alert, Collapse, Select, Radio, Input, DatePicker, Button } from "antd";
 import 'antd/dist/antd.css';
-
+import { UserDto } from "../../api/dto/user.dto";
+import jwt from 'jwt-decode'
 
 type Props = {
   setSession: any;
   history: any;
 };
 
+const token = localStorage.getItem('token');
+
 class PedirHoraPage extends React.Component<Props> {
 
-  state = {
-    value: "Limpieza",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      valor: "9000",
+      fecha_compromiso: "",
+      servicio: "",
+      user: "",
 
-  onChangeRadio = e => {
-    console.log('radio checked', e.target.value);
-    this.setState({
-      value: e.target.value,
-    });
-  };
 
-  onChangeDate = e => {
-    this.setState({
-      date: e.target.value,
-    });
-  };
+    }
+  }
 
+  submit() {
+
+    let url = "https://api-portafolio-titulo-duoc.herokuapp.com/api/hora";
+    let data = this.state;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn("resp", resp)
+      })
+    })
+  }
 
   render() {
-    const precio = '9990';
-    const radioStyle = {
-      display: 'block',
-      height: '30px',
-      lineHeight: '30px',
-    };
-    const { value } = this.state;
+
+
+    const ususario: UserDto = jwt(token);
+
     return (
       <>
         <Layout isHome={true}>
           <div className="my-3 my-md-5">
             <Container>
               <Grid.Row>
-                <Grid.Col lg={12}>
+                <Grid.Col lg={3}>
+                  <Menu />
+                </Grid.Col>
+                <Grid.Col lg={9}>
                   <Card>
                     <Card.Body>
-                      <Formik
-                        initialValues={{
-                          valor: precio,
-                          fecha_compromiso: "",
-                          servicio: this.state.value,
-                          user: "",
-                        }}
-                        validate={(values) => {
-                          let errors = {} as any;
-                          if (Validator.isEmpty(values.fecha_compromiso)) {
-                            errors.fecha_compromiso = "Debe ingresar Fecha de Compromiso";
-                          }
-                          if (Validator.isEmpty(values.servicio)) {
-                            errors.servicio = "Debe ingresar Servicio";
-                          }
-                          if (Validator.isEmpty(values.user)) {
-                            errors.user = "Debe ingresar Usuario";
-                          }
-                          return errors;
-                        }}
-                        onSubmit={async (
-                          values,
-                          { setSubmitting, setErrors /* setValues and other goodies */ }
-                        ) => {
-                          const newHora: PedirHoraDto = {
-                            valor: values.valor,
-                            fecha_compromiso: values.fecha_compromiso,
-                            servicio: values.servicio,
-                            user: values.user,
-                          };
-                          try {
-                            const result = await PedirHora.register(newHora);
-                            if (!result.error) {
-                              swal("Hora solicitada", result.data.toString(), "success");
-                              this.props.history.push("/home");
-                            } else {
-                              swal("Lo sentimos", result.error.toString(), "error");
-                            }
-                          } catch (error) {
-                            swal("Lo sentimos", error, "error");
-                          }
-                        }}
-                        render={({
-                          values,
-                          errors,
-                          touched,
-                          handleChange,
-                          handleBlur,
-                          handleSubmit,
-                          isSubmitting,
-                        }) => (
-                            <StandaloneFormPage imageURL={logo}>
-                              <FormCard
-                                buttonText={"Pedir Hora"}
-                                title={"Pide tu hora"}
-                                onSubmit={handleSubmit}
-                              >
-                                <FormTextInput
-                                  name="user"
-                                  label="Usuario"
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  value={values && values.user}
-                                  error={errors && errors.user}
-                                />
-                                <DatePicker onChange={this.onChangeDate} />
-                                <br></br>
-                                <br></br>
-                                <Radio.Group onChange={this.onChangeRadio} value={value}>
-                                  <Radio style={radioStyle} value={"Limpieza"}>
-                                    Limpieza
-                                  </Radio>
-                                  <Radio style={radioStyle} value={"Ortodoncia"}>
-                                    Ortodoncia
-                                    </Radio>
-                                  <Radio style={radioStyle} value={"General"}>
-                                    Revicion General
-                                    </Radio>
-                                </Radio.Group>
-                                <br></br>
-                                <br></br>
-                                <FormTextInput
-                                  name="valor"
-                                  disabled
-                                  label="Valor"
-                                  onChange={handleChange}
-                                  onBlur={handleBlur}
-                                  value={values && values.valor}
-                                  error={errors && errors.valor}
-                                />
-                              </FormCard>
-                            </StandaloneFormPage>
-                          )}
-                      />
+                      <div>
+                        <h1>Pedir Hora Medica</h1>
+                        <Input type="Text"
+                          value={ususario.username}
+                          name="user" placeholder="Usuario"
+                          onChange={(data) => { this.setState({ user: data.target.value }) }}
+                        />
+                        <br />
+                        <br />
+                        <Input type="Date"
+                          name="fecha"
+                          placeholder="Ingrese Fecha Ingreso"
+                          onChange={(data) => { this.setState({ fecha_compromiso: data.target.value }) }} />
+                        <br />
+                        <br />
+                        <select
+                          name="servicio" onChange={(data) => { this.setState({ servicio: data.target.value }) }} >
+                          <option value="Cirugia">Cirugia</option>
+                          <option value="Endodoncia">Endodoncia</option>
+                          <option value="Implantologia">Implantologia</option>
+                          <option selected value="Odontologia">Odontología Gral</option>
+                          <option value="Ortodoncia">Ortodoncia</option>
+                          <option value="Periodoncia">Periodoncia</option>
+                        </select>
+                        <br />
+                        <br />
+
+                        <Input type="Text"
+                          value={9900}
+                          name="valor"
+                          placeholder="Ingrese Valor Hora"
+                          disabled
+                          onChange={(data) => { this.setState({ valor: data.target.value }) }}
+                        />
+                        <br />
+                        <br />
+                        <Button onClick={() => { this.submit() }}> Ingresar Hora! </Button>
+
+                      </div>
                     </Card.Body>
                   </Card>
                 </Grid.Col>
