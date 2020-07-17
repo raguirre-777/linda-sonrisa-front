@@ -141,7 +141,7 @@ export const HoraList = () => {
                       {datosUser.map((hora: any) => (
                         <tr key={hora.id}>
                           <td>{hora.servicio}</td>
-                          <td>{Moment(hora.fecha_compromiso).format('d MMM')}</td>
+                          <td>{Moment(hora.fecha_compromiso).format('DD MMM')}</td>
                           <td>{hora.valor}</td>
                           <td>
                             <button

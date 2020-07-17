@@ -24,14 +24,13 @@ const token = localStorage.getItem('token');
 class PedirHoraPage extends React.Component<Props> {
 
   constructor(props) {
+    const ususario: UserDto = jwt(token);
     super(props);
     this.state = {
       valor: "9000",
       fecha_compromiso: "",
       servicio: "",
-      user: "",
-
-
+      user: ususario.username,
     }
   }
 
