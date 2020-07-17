@@ -8,6 +8,7 @@ import AboutPageWeb from "../pages/about";
 import DealPageWeb from "../pages/deal";
 import Error404Page from "../pages/404";
 import HomePage from "../pages/paciente/home";
+import { MisDatosPage } from "../pages/paciente/mis-datos";
 //Auth
 import LoginPage from "../pages/auth/login";
 import LogoutPage from "../pages/auth/logout";
@@ -95,6 +96,13 @@ class Routes extends Component<Props> {
                 </PrivateRoute>
 
                 <Route exact path="/hora/hora-form" component={PedirHoraPage} />
+
+                <PrivateRoute exact path="/hora/edit-form" session={this.props.session}>
+                    <MisDatosPage />
+                </PrivateRoute>
+
+                {/* <Route exact path="/hora/edit-form" component={MisDatosPage} /> */}
+
 
                 {/* MANTENEDORES */}
                 <Route exact path="/mantenedor/usuarios" component={Users} />
