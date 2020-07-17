@@ -122,7 +122,7 @@ export const MisDatosPage = () => {
             <Grid.Col lg={9}>
               <Card>
                 <Card.Header>
-                  <Card.Title>Mantenedor de Usuarios</Card.Title>
+                  <Card.Title>Mis Datos</Card.Title>
                 </Card.Header>
                 <Card.Body>
                   <form onSubmit={handleSubmit} className="card card-body">

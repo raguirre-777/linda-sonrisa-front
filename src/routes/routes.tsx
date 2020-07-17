@@ -21,6 +21,8 @@ import { Servicio } from "../components/mantenedores/servicio";
 import { Roles } from "../components/mantenedores/roles";
 import PedirHoraPage from "../pages/paciente/hora";
 import { HoraList } from "../pages/paciente/list-hora";
+import { OpList } from "../pages/admin/list-op";
+import OrdenPedidoPage from "../pages/admin/op";
 //Paciente
 
 //Admin
@@ -104,6 +106,21 @@ class Routes extends Component<Props> {
 
                 <PrivateRoute exact path="/hora/historic-hora" session={this.props.session}>
                     <HoraList />
+                </PrivateRoute>
+
+
+                <PrivateRoute exact path="/op/emitir-form" session={this.props.session}>
+                    <OrdenPedidoPage />
+                </PrivateRoute>
+
+
+                <PrivateRoute exact path="/oc/historic-op" session={this.props.session}>
+                    <OpList />
+                </PrivateRoute>
+
+
+                <PrivateRoute exact path="/op/recepcion-form" session={this.props.session}>
+                    <OpList />
                 </PrivateRoute>
 
 
